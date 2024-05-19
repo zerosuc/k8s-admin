@@ -1,0 +1,1370 @@
+definitions:
+  types.ApiObjDetail:
+    properties:
+      action:
+        type: string
+      createBy:
+        type: integer
+      createdAt:
+        type: string
+      handle:
+        type: string
+      id:
+        description: convert to string id
+        type: string
+      path:
+        type: string
+      title:
+        type: string
+      type:
+        type: string
+      updateBy:
+        type: integer
+      updatedAt:
+        type: string
+    type: object
+  types.Column:
+    properties:
+      exp:
+        description: expressions, which default to = when the value is null, have
+          =, !=, >, >=, <, <=, like
+        type: string
+      logic:
+        description: logical type, defaults to and when value is null, only &(and),
+          ||(or)
+        type: string
+      name:
+        description: column name
+        type: string
+      value:
+        description: column value
+    type: object
+  types.Conditions:
+    properties:
+      columns:
+        description: columns info
+        items:
+          $ref: '#/definitions/types.Column'
+        type: array
+    type: object
+  types.CreateApiRequest:
+    properties:
+      action:
+        type: string
+      createBy:
+        type: integer
+      handle:
+        type: string
+      path:
+        type: string
+      title:
+        type: string
+      type:
+        type: string
+      updateBy:
+        type: integer
+    type: object
+  types.CreateApiRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+        properties:
+          id:
+            description: id
+            type: integer
+        type: object
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.CreateRoleRequest:
+    properties:
+      admin:
+        type: string
+      createBy:
+        type: integer
+      dataScope:
+        type: string
+      flag:
+        type: string
+      remark:
+        type: string
+      roleId:
+        type: integer
+      roleKey:
+        type: string
+      roleName:
+        type: string
+      roleSort:
+        type: integer
+      status:
+        type: string
+      updateBy:
+        type: integer
+    type: object
+  types.CreateRoleRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+        properties:
+          id:
+            description: id
+            type: integer
+        type: object
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.CreateUserRequest:
+    properties:
+      age:
+        description: age
+        type: integer
+      avatar:
+        description: avatar
+        type: string
+      email:
+        description: email
+        type: string
+      gender:
+        description: gender, 1:Male, 2:Female, other values:unknown
+        type: integer
+      loginAt:
+        description: login timestamp
+        type: integer
+      name:
+        description: username
+        type: string
+      password:
+        description: password
+        type: string
+      phone:
+        description: phone number
+        type: string
+      status:
+        description: account status, 1:inactive, 2:activated, 3:blocked
+        type: integer
+    type: object
+  types.CreateUserRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+        properties:
+          id:
+            description: id
+            type: integer
+        type: object
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.DeleteApiByIDRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.DeleteApisByIDsRequest:
+    properties:
+      ids:
+        description: id list
+        items:
+          type: integer
+        minItems: 1
+        type: array
+    type: object
+  types.DeleteApisByIDsRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.DeleteRoleByIDRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.DeleteRolesByIDsRequest:
+    properties:
+      ids:
+        description: id list
+        items:
+          type: integer
+        minItems: 1
+        type: array
+    type: object
+  types.DeleteRolesByIDsRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.DeleteUserByIDRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.DeleteUsersByIDsRequest:
+    properties:
+      ids:
+        description: id list
+        items:
+          type: integer
+        minItems: 1
+        type: array
+    type: object
+  types.DeleteUsersByIDsRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.GetApiByConditionRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+        properties:
+          api:
+            $ref: '#/definitions/types.ApiObjDetail'
+        type: object
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.GetApiByIDRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+        properties:
+          api:
+            $ref: '#/definitions/types.ApiObjDetail'
+        type: object
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.GetRoleByConditionRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+        properties:
+          role:
+            $ref: '#/definitions/types.RoleObjDetail'
+        type: object
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.GetRoleByIDRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+        properties:
+          role:
+            $ref: '#/definitions/types.RoleObjDetail'
+        type: object
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.GetUserByConditionRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+        properties:
+          user:
+            $ref: '#/definitions/types.UserObjDetail'
+        type: object
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.GetUserByIDRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+        properties:
+          user:
+            $ref: '#/definitions/types.UserObjDetail'
+        type: object
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.ListApisByIDsRequest:
+    properties:
+      ids:
+        description: id list
+        items:
+          type: integer
+        minItems: 1
+        type: array
+    type: object
+  types.ListApisByIDsRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+        properties:
+          apis:
+            items:
+              $ref: '#/definitions/types.ApiObjDetail'
+            type: array
+        type: object
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.ListApisRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+        properties:
+          apis:
+            items:
+              $ref: '#/definitions/types.ApiObjDetail'
+            type: array
+        type: object
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.ListRolesByIDsRequest:
+    properties:
+      ids:
+        description: id list
+        items:
+          type: integer
+        minItems: 1
+        type: array
+    type: object
+  types.ListRolesByIDsRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+        properties:
+          roles:
+            items:
+              $ref: '#/definitions/types.RoleObjDetail'
+            type: array
+        type: object
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.ListRolesRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+        properties:
+          roles:
+            items:
+              $ref: '#/definitions/types.RoleObjDetail'
+            type: array
+        type: object
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.ListUsersByIDsRequest:
+    properties:
+      ids:
+        description: id list
+        items:
+          type: integer
+        minItems: 1
+        type: array
+    type: object
+  types.ListUsersByIDsRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+        properties:
+          users:
+            items:
+              $ref: '#/definitions/types.UserObjDetail'
+            type: array
+        type: object
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.ListUsersRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+        properties:
+          users:
+            items:
+              $ref: '#/definitions/types.UserObjDetail'
+            type: array
+        type: object
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.Params:
+    properties:
+      columns:
+        description: query conditions
+        items:
+          $ref: '#/definitions/types.Column'
+        type: array
+      page:
+        description: page number, starting from page 0
+        type: integer
+      size:
+        description: lines per page
+        type: integer
+      sort:
+        description: sorted fields, multi-column sorting separated by commas
+        type: string
+    type: object
+  types.RoleObjDetail:
+    properties:
+      admin:
+        type: string
+      createBy:
+        type: integer
+      createdAt:
+        type: string
+      dataScope:
+        type: string
+      flag:
+        type: string
+      remark:
+        type: string
+      roleId:
+        type: string
+      roleKey:
+        type: string
+      roleName:
+        type: string
+      roleSort:
+        type: integer
+      status:
+        type: string
+      updateBy:
+        type: integer
+      updatedAt:
+        type: string
+    type: object
+  types.UpdateApiByIDRequest:
+    properties:
+      action:
+        type: string
+      createBy:
+        type: integer
+      handle:
+        type: string
+      id:
+        description: uint64 id
+        type: integer
+      path:
+        type: string
+      title:
+        type: string
+      type:
+        type: string
+      updateBy:
+        type: integer
+    type: object
+  types.UpdateApiByIDRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.UpdateRoleByIDRequest:
+    properties:
+      admin:
+        type: string
+      createBy:
+        type: integer
+      dataScope:
+        type: string
+      flag:
+        type: string
+      remark:
+        type: string
+      roleId:
+        type: integer
+      roleKey:
+        type: string
+      roleName:
+        type: string
+      roleSort:
+        type: integer
+      status:
+        type: string
+      updateBy:
+        type: integer
+    type: object
+  types.UpdateRoleByIDRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.UpdateUserByIDRequest:
+    properties:
+      age:
+        description: age
+        type: integer
+      avatar:
+        description: avatar
+        type: string
+      email:
+        description: email
+        type: string
+      gender:
+        description: gender, 1:Male, 2:Female, other values:unknown
+        type: integer
+      id:
+        description: uint64 id
+        type: integer
+      loginAt:
+        description: login timestamp
+        type: integer
+      name:
+        description: username
+        type: string
+      password:
+        description: password
+        type: string
+      phone:
+        description: phone number
+        type: string
+      status:
+        description: account status, 1:inactive, 2:activated, 3:blocked
+        type: integer
+    type: object
+  types.UpdateUserByIDRespond:
+    properties:
+      code:
+        description: return code
+        type: integer
+      data:
+        description: return data
+      msg:
+        description: return information description
+        type: string
+    type: object
+  types.UserObjDetail:
+    properties:
+      age:
+        description: age
+        type: integer
+      avatar:
+        description: avatar
+        type: string
+      createdAt:
+        type: string
+      email:
+        description: email
+        type: string
+      gender:
+        description: gender, 1:Male, 2:Female, other values:unknown
+        type: integer
+      id:
+        description: convert to string id
+        type: string
+      loginAt:
+        description: login timestamp
+        type: integer
+      name:
+        description: username
+        type: string
+      password:
+        description: password
+        type: string
+      phone:
+        description: phone number
+        type: string
+      status:
+        description: account status, 1:inactive, 2:activated, 3:blocked
+        type: integer
+      updatedAt:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: http server api docs
+  title: admin api docs
+  version: "2.0"
+paths:
+  /api/v1/api:
+    post:
+      consumes:
+      - application/json
+      description: submit information to create api
+      parameters:
+      - description: api information
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.CreateApiRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.CreateApiRespond'
+      security:
+      - BearerAuth: []
+      summary: create api
+      tags:
+      - api
+  /api/v1/api/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete api by id
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.DeleteApiByIDRespond'
+      security:
+      - BearerAuth: []
+      summary: delete api
+      tags:
+      - api
+    get:
+      consumes:
+      - application/json
+      description: get api detail by id
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.GetApiByIDRespond'
+      security:
+      - BearerAuth: []
+      summary: get api detail
+      tags:
+      - api
+    put:
+      consumes:
+      - application/json
+      description: update api information by id
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: api information
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.UpdateApiByIDRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.UpdateApiByIDRespond'
+      security:
+      - BearerAuth: []
+      summary: update api
+      tags:
+      - api
+  /api/v1/api/condition:
+    post:
+      consumes:
+      - application/json
+      description: get api by condition
+      parameters:
+      - description: query condition
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.Conditions'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.GetApiByConditionRespond'
+      security:
+      - BearerAuth: []
+      summary: get api by condition
+      tags:
+      - api
+  /api/v1/api/delete/ids:
+    post:
+      consumes:
+      - application/json
+      description: delete apis by batch id
+      parameters:
+      - description: id array
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.DeleteApisByIDsRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.DeleteApisByIDsRespond'
+      security:
+      - BearerAuth: []
+      summary: delete apis
+      tags:
+      - api
+  /api/v1/api/list:
+    get:
+      consumes:
+      - application/json
+      description: list of apis by last id and limit
+      parameters:
+      - default: 0
+        description: last id, default is MaxInt32
+        in: query
+        name: lastID
+        required: true
+        type: integer
+      - default: 10
+        description: size in each page
+        in: query
+        name: limit
+        type: integer
+      - default: -id
+        description: 'sort by column name of table, and the '
+        in: query
+        name: sort
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.ListApisRespond'
+      security:
+      - BearerAuth: []
+      summary: list of apis by last id and limit
+      tags:
+      - api
+    post:
+      consumes:
+      - application/json
+      description: list of apis by paging and conditions
+      parameters:
+      - description: query parameters
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.Params'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.ListApisRespond'
+      security:
+      - BearerAuth: []
+      summary: list of apis by query parameters
+      tags:
+      - api
+  /api/v1/api/list/ids:
+    post:
+      consumes:
+      - application/json
+      description: list of apis by batch id
+      parameters:
+      - description: id array
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.ListApisByIDsRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.ListApisByIDsRespond'
+      security:
+      - BearerAuth: []
+      summary: list of apis by batch id
+      tags:
+      - api
+  /api/v1/role:
+    post:
+      consumes:
+      - application/json
+      description: submit information to create role
+      parameters:
+      - description: role information
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.CreateRoleRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.CreateRoleRespond'
+      security:
+      - BearerAuth: []
+      summary: create role
+      tags:
+      - role
+  /api/v1/role/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete role by id
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.DeleteRoleByIDRespond'
+      security:
+      - BearerAuth: []
+      summary: delete role
+      tags:
+      - role
+    get:
+      consumes:
+      - application/json
+      description: get role detail by id
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.GetRoleByIDRespond'
+      security:
+      - BearerAuth: []
+      summary: get role detail
+      tags:
+      - role
+    put:
+      consumes:
+      - application/json
+      description: update role information by id
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: role information
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.UpdateRoleByIDRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.UpdateRoleByIDRespond'
+      security:
+      - BearerAuth: []
+      summary: update role
+      tags:
+      - role
+  /api/v1/role/condition:
+    post:
+      consumes:
+      - application/json
+      description: get role by condition
+      parameters:
+      - description: query condition
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.Conditions'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.GetRoleByConditionRespond'
+      security:
+      - BearerAuth: []
+      summary: get role by condition
+      tags:
+      - role
+  /api/v1/role/delete/ids:
+    post:
+      consumes:
+      - application/json
+      description: delete roles by batch id
+      parameters:
+      - description: id array
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.DeleteRolesByIDsRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.DeleteRolesByIDsRespond'
+      security:
+      - BearerAuth: []
+      summary: delete roles
+      tags:
+      - role
+  /api/v1/role/list:
+    get:
+      consumes:
+      - application/json
+      description: list of roles by last id and limit
+      parameters:
+      - default: 0
+        description: last id, default is MaxInt32
+        in: query
+        name: lastID
+        required: true
+        type: integer
+      - default: 10
+        description: size in each page
+        in: query
+        name: limit
+        type: integer
+      - default: -id
+        description: 'sort by column name of table, and the '
+        in: query
+        name: sort
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.ListRolesRespond'
+      security:
+      - BearerAuth: []
+      summary: list of roles by last id and limit
+      tags:
+      - role
+    post:
+      consumes:
+      - application/json
+      description: list of roles by paging and conditions
+      parameters:
+      - description: query parameters
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.Params'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.ListRolesRespond'
+      security:
+      - BearerAuth: []
+      summary: list of roles by query parameters
+      tags:
+      - role
+  /api/v1/role/list/ids:
+    post:
+      consumes:
+      - application/json
+      description: list of roles by batch id
+      parameters:
+      - description: id array
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.ListRolesByIDsRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.ListRolesByIDsRespond'
+      security:
+      - BearerAuth: []
+      summary: list of roles by batch id
+      tags:
+      - role
+  /api/v1/user:
+    post:
+      consumes:
+      - application/json
+      description: submit information to create user
+      parameters:
+      - description: user information
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.CreateUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.CreateUserRespond'
+      security:
+      - BearerAuth: []
+      summary: create user
+      tags:
+      - user
+  /api/v1/user/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: delete user by id
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.DeleteUserByIDRespond'
+      security:
+      - BearerAuth: []
+      summary: delete user
+      tags:
+      - user
+    get:
+      consumes:
+      - application/json
+      description: get user detail by id
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.GetUserByIDRespond'
+      security:
+      - BearerAuth: []
+      summary: get user detail
+      tags:
+      - user
+    put:
+      consumes:
+      - application/json
+      description: update user information by id
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: user information
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.UpdateUserByIDRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.UpdateUserByIDRespond'
+      security:
+      - BearerAuth: []
+      summary: update user
+      tags:
+      - user
+  /api/v1/user/condition:
+    post:
+      consumes:
+      - application/json
+      description: get user by condition
+      parameters:
+      - description: query condition
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.Conditions'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.GetUserByConditionRespond'
+      security:
+      - BearerAuth: []
+      summary: get user by condition
+      tags:
+      - user
+  /api/v1/user/delete/ids:
+    post:
+      consumes:
+      - application/json
+      description: delete users by batch id
+      parameters:
+      - description: id array
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.DeleteUsersByIDsRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.DeleteUsersByIDsRespond'
+      security:
+      - BearerAuth: []
+      summary: delete users
+      tags:
+      - user
+  /api/v1/user/list:
+    get:
+      consumes:
+      - application/json
+      description: list of users by last id and limit
+      parameters:
+      - default: 0
+        description: last id, default is MaxInt32
+        in: query
+        name: lastID
+        required: true
+        type: integer
+      - default: 10
+        description: size in each page
+        in: query
+        name: limit
+        type: integer
+      - default: -id
+        description: 'sort by column name of table, and the '
+        in: query
+        name: sort
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.ListUsersRespond'
+      security:
+      - BearerAuth: []
+      summary: list of users by last id and limit
+      tags:
+      - user
+    post:
+      consumes:
+      - application/json
+      description: list of users by paging and conditions
+      parameters:
+      - description: query parameters
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.Params'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.ListUsersRespond'
+      security:
+      - BearerAuth: []
+      summary: list of users by query parameters
+      tags:
+      - user
+  /api/v1/user/list/ids:
+    post:
+      consumes:
+      - application/json
+      description: list of users by batch id
+      parameters:
+      - description: id array
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.ListUsersByIDsRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.ListUsersByIDsRespond'
+      security:
+      - BearerAuth: []
+      summary: list of users by batch id
+      tags:
+      - user
+schemes:
+- http
+- https
+securityDefinitions:
+  BearerAuth:
+    description: Type Bearer your-jwt-token to Value
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

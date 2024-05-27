@@ -479,6 +479,15 @@ definitions:
         description: return information description
         type: string
     type: object
+  types.LoginRequest:
+    properties:
+      name:
+        description: username
+        type: string
+      password:
+        description: password
+        type: string
+    type: object
   types.Params:
     properties:
       columns:
@@ -906,6 +915,65 @@ paths:
       summary: list of apis by batch id
       tags:
       - api
+  /api/v1/login:
+    post:
+      consumes:
+      - application/json
+      description: Login information
+      parameters:
+      - description: user information
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.CreateUserRespond'
+      security:
+      - BearerAuth: []
+      summary: Login api
+      tags:
+      - user
+  /api/v1/proxy/api:
+    get:
+      consumes:
+      - application/json
+      description: 代理K8s的所有接口
+      produces:
+      - application/json
+      responses: {}
+      summary: 代理K8s的所有接口
+      tags:
+      - 代理K8s的所有接口
+  /api/v1/reg:
+    post:
+      consumes:
+      - application/json
+      description: submit information to create user
+      parameters:
+      - description: user information
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/types.CreateUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/types.CreateUserRespond'
+      security:
+      - BearerAuth: []
+      summary: Register api
+      tags:
+      - user
   /api/v1/role:
     post:
       consumes:
@@ -1132,30 +1200,6 @@ paths:
       summary: list of roles by batch id
       tags:
       - role
-  /api/v1/user:
-    post:
-      consumes:
-      - application/json
-      description: submit information to create user
-      parameters:
-      - description: user information
-        in: body
-        name: data
-        required: true
-        schema:
-          $ref: '#/definitions/types.CreateUserRequest'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/types.CreateUserRespond'
-      security:
-      - BearerAuth: []
-      summary: create user
-      tags:
-      - user
   /api/v1/user/{id}:
     delete:
       consumes:

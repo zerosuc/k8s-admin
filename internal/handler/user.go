@@ -23,7 +23,8 @@ var _ UserHandler = (*userHandler)(nil)
 
 // UserHandler defining the handler interface
 type UserHandler interface {
-	Create(c *gin.Context)
+	Login(c *gin.Context)
+	Register(c *gin.Context)
 	DeleteByID(c *gin.Context)
 	DeleteByIDs(c *gin.Context)
 	UpdateByID(c *gin.Context)
@@ -48,17 +49,58 @@ func NewUserHandler() UserHandler {
 	}
 }
 
-// Create a record
-// @Summary create user
+// Login
+// @Summary Login api
+// @Description Login information
+// @Tags user
+// @accept json
+// @Produce json
+// @Param data body types.LoginRequest true "user information"
+// @Success 200 {object} types.CreateUserRespond{}
+// @Router /api/v1/login [post]
+// @Security BearerAuth
+func (h *userHandler) Login(c *gin.Context) {
+	form := &types.LoginRequest{}
+	err := c.ShouldBindJSON(form)
+	if err != nil {
+		logger.Warn("ShouldBindJSON error: ", logger.Err(err), middleware.GCtxRequestIDField(c))
+		response.Error(c, ecode.InvalidParams)
+		return
+	}
+
+	user := &model.User{}
+	err = copier.Copy(user, form)
+	if err != nil {
+		response.Error(c, ecode.ErrCreateUser)
+		return
+	}
+	ctx := middleware.WrapCtx(c)
+	userInfo, err := h.iDao.GetByName(ctx, user.Name)
+	if err != nil {
+		logger.Error("Create error", logger.Err(err), logger.Any("form", form), middleware.GCtxRequestIDField(c))
+		response.Output(c, ecode.InternalServerError.ToHTTPCode())
+		return
+	}
+	if userInfo.Password != user.Password {
+		logger.Error(ecode.ErrLogin.Msg())
+		response.Error(c, ecode.ErrLogin)
+		return
+	}
+
+	response.Success(c, userInfo)
+}
+
+// Register
+// @Summary Register api
 // @Description submit information to create user
 // @Tags user
 // @accept json
 // @Produce json
 // @Param data body types.CreateUserRequest true "user information"
 // @Success 200 {object} types.CreateUserRespond{}
-// @Router /api/v1/user [post]
+// @Router /api/v1/reg [post]
 // @Security BearerAuth
-func (h *userHandler) Create(c *gin.Context) {
+func (h *userHandler) Register(c *gin.Context) {
 	form := &types.CreateUserRequest{}
 	err := c.ShouldBindJSON(form)
 	if err != nil {

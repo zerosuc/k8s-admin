@@ -26,6 +26,7 @@ type UserDao interface {
 	DeleteByIDs(ctx context.Context, ids []uint64) error
 	UpdateByID(ctx context.Context, table *model.User) error
 	GetByID(ctx context.Context, id uint64) (*model.User, error)
+	GetByName(ctx context.Context, name string) (*model.User, error)
 	GetByCondition(ctx context.Context, condition *query.Conditions) (*model.User, error)
 	GetByIDs(ctx context.Context, ids []uint64) (map[uint64]*model.User, error)
 	GetByLastID(ctx context.Context, lastID uint64, limit int, sort string) ([]*model.User, error)
@@ -194,6 +195,16 @@ func (d *userDao) GetByID(ctx context.Context, id uint64) (*model.User, error) {
 
 	// fail fast, if cache error return, don't request to db
 	return nil, err
+}
+
+// GetByName get a record by id
+func (d *userDao) GetByName(ctx context.Context, name string) (*model.User, error) {
+	records := model.User{}
+	err := d.db.WithContext(ctx).Where("name = ?", name).Find(&records).Error
+	if err != nil {
+		return nil, err
+	}
+	return &records, nil
 }
 
 // GetByCondition get a record by condition

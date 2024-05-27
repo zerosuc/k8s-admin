@@ -377,6 +377,100 @@ const docTemplate = `{
                 }
             }
         },
+        "/api/v1/login": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Login information",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Login api",
+                "parameters": [
+                    {
+                        "description": "user information",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/types.LoginRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/types.CreateUserRespond"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/proxy/api": {
+            "get": {
+                "description": "代理K8s的所有接口",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "代理K8s的所有接口"
+                ],
+                "summary": "代理K8s的所有接口",
+                "responses": {}
+            }
+        },
+        "/api/v1/reg": {
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "submit information to create user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "Register api",
+                "parameters": [
+                    {
+                        "description": "user information",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/types.CreateUserRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/types.CreateUserRespond"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/role": {
             "post": {
                 "security": [
@@ -733,45 +827,6 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/types.DeleteRoleByIDRespond"
-                        }
-                    }
-                }
-            }
-        },
-        "/api/v1/user": {
-            "post": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "description": "submit information to create user",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "user"
-                ],
-                "summary": "create user",
-                "parameters": [
-                    {
-                        "description": "user information",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/types.CreateUserRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/types.CreateUserRespond"
                         }
                     }
                 }
@@ -1795,6 +1850,19 @@ const docTemplate = `{
                 },
                 "msg": {
                     "description": "return information description",
+                    "type": "string"
+                }
+            }
+        },
+        "types.LoginRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "username",
+                    "type": "string"
+                },
+                "password": {
+                    "description": "password",
                     "type": "string"
                 }
             }

@@ -19,7 +19,7 @@ app:
 
 # http server settings
 http:
-  port: 8080                # listen port
+  port: 8082               # listen port
   timeout: 0                # request timeout, unit(second), if 0 means not set, if greater than 0 means set timeout, if enableHTTPProfile is true, it needs to set 0 or greater than 60s
 
 

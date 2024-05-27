@@ -20,5 +20,7 @@ var (
 	ErrListByIDsUser      = errcode.NewError(userBaseCode+7, "failed to list by batch ids "+userName)
 	ErrListByLastIDUser   = errcode.NewError(userBaseCode+8, "failed to list by last id "+userName)
 	ErrListUser           = errcode.NewError(userBaseCode+9, "failed to list of "+userName)
+
+	ErrLogin = errcode.NewError(userBaseCode+10, "username or passwd error ")
 	// error codes are globally unique, adding 1 to the previous error code
 )
